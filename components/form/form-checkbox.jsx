@@ -19,7 +19,9 @@ export default function FormCheckbox({ name, label, ...props }) {
               onCheckedChange={field.onChange}
               {...props}
             />
-            <Label htmlFor={name}>{label}</Label>
+            <Label className="text-input-label" htmlFor={name}>
+              {label}
+            </Label>
           </Field>
 
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
