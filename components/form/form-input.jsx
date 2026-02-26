@@ -11,7 +11,7 @@ export default function FormInput({ name, label, type = "text", ...props }) {
       control={control}
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
-          <FieldLabel> {label} </FieldLabel>
+          <FieldLabel required>{label}</FieldLabel>
           <Input
             type={type}
             {...field}

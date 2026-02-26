@@ -5,7 +5,7 @@ import { Label as LabelPrimitive } from "radix-ui";
 
 import { cn } from "@/lib/utils";
 
-function Label({ className, ...props }) {
+function Label({ className, required = false, children, ...props }) {
   return (
     <LabelPrimitive.Root
       data-slot="label"
@@ -14,7 +14,14 @@ function Label({ className, ...props }) {
         className,
       )}
       {...props}
-    />
+    >
+      {children}
+      {required && (
+        <span className="text-destructive" aria-hidden="true">
+          *
+        </span>
+      )}
+    </LabelPrimitive.Root>
   );
 }
 

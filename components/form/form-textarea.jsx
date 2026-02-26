@@ -3,7 +3,7 @@ import { Controller, useFormContext } from "react-hook-form";
 import { Field, FieldError, FieldLabel } from "../ui/field";
 import { InputGroup, InputGroupTextarea } from "../ui/input-group";
 
-export default function FormTextarea({ name, label, rows }) {
+export default function FormTextarea({ name, label }) {
   const { control } = useFormContext();
   return (
     <Controller
@@ -11,12 +11,14 @@ export default function FormTextarea({ name, label, rows }) {
       control={control}
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
-          <FieldLabel htmlFor={name}>{label}</FieldLabel>
+          <FieldLabel htmlFor={name} required>
+            {label}
+          </FieldLabel>
           <InputGroup>
             <InputGroupTextarea
               {...field}
               id={name}
-              rows={rows}
+              rows={6}
               className="min-h-24 resize-none"
               aria-invalid={fieldState.invalid}
             />

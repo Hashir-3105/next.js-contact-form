@@ -19,7 +19,7 @@ export default function FormCheckbox({ name, label, ...props }) {
               onCheckedChange={field.onChange}
               {...props}
             />
-            <Label className="text-input-label" htmlFor={name}>
+            <Label required htmlFor={name}>
               {label}
             </Label>
           </Field>

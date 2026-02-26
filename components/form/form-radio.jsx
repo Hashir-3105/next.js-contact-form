@@ -17,7 +17,7 @@ export default function FormRadio({ name, label, options }) {
       control={control}
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
-          <FieldLabel>{label}</FieldLabel>
+          <FieldLabel required>{label}</FieldLabel>
           <RadioGroup
             value={field.value}
             onValueChange={field.onChange}
