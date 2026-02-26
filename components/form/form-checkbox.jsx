@@ -1,4 +1,3 @@
-import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { Field, FieldError } from "../ui/field";
 import { Checkbox } from "../ui/checkbox";
