@@ -92,7 +92,7 @@ export function ContactForm() {
           </CardContent>
           <CardFooter>
             <Button
-              variant="customPrimary"
+              disabled={isSubmitting}
               type="submit"
               className={"h-12 w-full"}
             >
