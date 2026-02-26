@@ -10,18 +10,19 @@ import {
 import { Button } from "../ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { Field, FieldGroup } from "../ui/field";
+import { FieldGroup } from "../ui/field";
 import FormInput from "../form/form-input";
 import FormTextarea from "../form/form-textarea";
 import FormRadio from "../form/form-radio";
 import FormCheckbox from "../form/form-checkbox";
 import { ContactSchema } from "@/lib/validations/contact.schema";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 const textFields = [
   { name: "firstName", label: "First Name" },
   { name: "lastName", label: "Last Name" },
-  { name: "email", label: "Email Address" },
+  { name: "email", label: "Email Address", fullWidth: true },
 ];
 
 export function ContactForm() {
@@ -61,31 +62,28 @@ export function ContactForm() {
           <CardContent>
             <FieldGroup>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {textFields.slice(0, 2).map((field) => {
-                  return (
+                {textFields.map((field) => (
+                  <div
+                    key={field.name}
+                    className={cn(field.fullWidth && "sm:col-span-2")}
+                  >
                     <FormInput
-                      key={field.name}
                       name={field.name}
                       label={field.label}
                       className="h-10"
                     />
-                  );
-                })}
+                  </div>
+                ))}
               </div>
-              <FormInput
-                name={"email"}
-                label={"Email Address"}
-                className="h-10"
-              />
               <FormRadio
                 name={"queryType"}
                 label={"Query Type"}
                 options={[
-                  { value: "general", label: "General Enquiry" },
-                  { value: "support", label: "Support Request" },
+                  { value: "general Enquiry", label: "General Enquiry" },
+                  { value: "support Request", label: "Support Request" },
                 ]}
               />
-              <FormTextarea name={"message"} label={"Message"} rows={8} />
+              <FormTextarea name={"message"} label={"Message"} />
               <FormCheckbox
                 name={"consent"}
                 label={"I consent to being contacted by the team"}
@@ -93,15 +91,13 @@ export function ContactForm() {
             </FieldGroup>
           </CardContent>
           <CardFooter>
-            <Field orientation="horizontal">
-              <Button
-                variant="customPrimary"
-                type="submit"
-                className={"h-12 w-full"}
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </Button>
-            </Field>
+            <Button
+              variant="customPrimary"
+              type="submit"
+              className={"h-12 w-full"}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
           </CardFooter>
         </Card>
       </form>
